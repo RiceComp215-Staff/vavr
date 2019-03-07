@@ -133,7 +133,7 @@ interface ArrayType<T> {
         return array;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
     static <T> T asPrimitives(Class<?> primitiveClass, Iterable<?> values) {
         final Object[] array = Array.ofAll(values).toJavaArray();
         final ArrayType<T> type = of((Class<T>) primitiveClass);

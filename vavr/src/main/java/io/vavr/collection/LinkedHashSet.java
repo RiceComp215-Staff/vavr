@@ -768,6 +768,7 @@ public final class LinkedHashSet<T> implements Set<T>, Serializable {
         return this;
     }
 
+    @SuppressWarnings("ReferenceEquality")
     @Override
     public LinkedHashSet<T> remove(T element) {
         final LinkedHashMap<T, Object> newMap = map.remove(element);
@@ -1030,6 +1031,7 @@ public final class LinkedHashSet<T> implements Set<T>, Serializable {
      * @throws InvalidObjectException This method will throw with the message "Proxy required".
      */
     @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+    @SuppressWarnings("UnusedVariable")
     private void readObject(ObjectInputStream stream) throws InvalidObjectException {
         throw new InvalidObjectException("Proxy required");
     }

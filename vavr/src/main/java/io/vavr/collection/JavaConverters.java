@@ -286,7 +286,7 @@ class JavaConverters {
 
         @Override
         public boolean equals(Object o) {
-            return o == this || o instanceof java.util.List && Collections.areEqual(getDelegate(), (java.util.List<?>) o);
+            return o == this || (o instanceof java.util.List && Collections.areEqual(getDelegate(), (java.util.List<?>) o));
         }
 
         @Override

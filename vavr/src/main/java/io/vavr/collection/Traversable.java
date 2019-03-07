@@ -397,6 +397,7 @@ public interface Traversable<T> extends Foldable<T>, Value<T> {
      * @param obj an object, may be null
      * @return true, if this collection equals the given object according to the rules described above, false otherwise.
      */
+    @Override
     boolean equals(Object obj);
 
     /**
@@ -672,6 +673,7 @@ public interface Traversable<T> extends Foldable<T>, Value<T> {
      *
      * @return The hash code of this collection
      */
+    @Override
     int hashCode();
 
     /**

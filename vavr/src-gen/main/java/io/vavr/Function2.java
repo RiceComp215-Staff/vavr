@@ -152,6 +152,7 @@ public interface Function2<T1, T2, R> extends Serializable, BiFunction<T1, T2, R
      * @return the result of function application
      * 
      */
+    @SuppressWarnings("MissingOverride")
     R apply(T1 t1, T2 t2);
 
     /**
@@ -246,6 +247,7 @@ public interface Function2<T1, T2, R> extends Serializable, BiFunction<T1, T2, R
      * @return a function composed of this and after
      * @throws NullPointerException if after is null
      */
+    @SuppressWarnings("MissingOverride")
     default <V> Function2<T1, T2, V> andThen(Function<? super R, ? extends V> after) {
         Objects.requireNonNull(after, "after is null");
         return (t1, t2) -> after.apply(apply(t1, t2));

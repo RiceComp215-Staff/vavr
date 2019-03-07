@@ -1930,6 +1930,7 @@ interface StreamModule {
         }
 
         @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+        @SuppressWarnings("UnusedVariable")
         private void readObject(ObjectInputStream stream) throws InvalidObjectException {
             throw new InvalidObjectException("Proxy required");
         }
@@ -1979,6 +1980,7 @@ interface StreamModule {
         }
 
         @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+        @SuppressWarnings("UnusedVariable")
         private void readObject(ObjectInputStream stream) throws InvalidObjectException {
             throw new InvalidObjectException("Proxy required");
         }

@@ -996,6 +996,7 @@ public interface Tree<T> extends Traversable<T>, Serializable {
          * @throws java.io.InvalidObjectException This method will throw with the message "Proxy required".
          */
         @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+        @SuppressWarnings("UnusedVariable")
         private void readObject(ObjectInputStream stream) throws InvalidObjectException {
             throw new InvalidObjectException("Proxy required");
         }
@@ -1235,6 +1236,7 @@ interface TreeModule {
     // Idea:
     // Traverse (depth-first) until a match is found, then stop and rebuild relevant parts of the tree.
     // If not found, return the same tree instance.
+    @SuppressWarnings("ReferenceEquality")
     static <T> Node<T> replace(Node<T> node, T currentElement, T newElement) {
         if (Objects.equals(node.getValue(), currentElement)) {
             return new Node<>(newElement, node.getChildren());
@@ -1276,6 +1278,7 @@ interface TreeModule {
                 .append(node);
     }
 
+    @SuppressWarnings("JdkObsolete")
     static <T> Stream<Node<T>> traverseLevelOrder(Node<T> node) {
         Stream<Node<T>> result = Stream.empty();
         final java.util.Queue<Node<T>> queue = new java.util.LinkedList<>();

@@ -158,6 +158,7 @@ public interface Function3<T1, T2, T3, R> extends Serializable {
      * @return the result of function application
      * 
      */
+    @SuppressWarnings("MissingOverride")
     R apply(T1 t1, T2 t2, T3 t3);
 
     /**
@@ -263,6 +264,7 @@ public interface Function3<T1, T2, T3, R> extends Serializable {
      * @return a function composed of this and after
      * @throws NullPointerException if after is null
      */
+    @SuppressWarnings("MissingOverride")
     default <V> Function3<T1, T2, T3, V> andThen(Function<? super R, ? extends V> after) {
         Objects.requireNonNull(after, "after is null");
         return (t1, t2, t3) -> after.apply(apply(t1, t2, t3));

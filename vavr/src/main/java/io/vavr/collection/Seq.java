@@ -611,6 +611,7 @@ public interface Seq<T> extends Traversable<T>, PartialFunction<Integer, T>, Ser
      * @deprecated Will be removed
      */
     @Deprecated
+    @Override
     default Function1<Integer, Option<T>> lift() {
         return i -> (i >= 0 && i < length()) ? Option.some(apply(i)) : Option.none();
     }

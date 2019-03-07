@@ -34,6 +34,7 @@ import java.util.stream.Collector;
 
 import static io.vavr.collection.JavaConverters.ChangePolicy.IMMUTABLE;
 import static io.vavr.collection.JavaConverters.ChangePolicy.MUTABLE;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * The CharSeq (read: character sequence) collection essentially is a rich String wrapper having all operations
@@ -1538,7 +1539,7 @@ public final class CharSeq implements CharSequence, IndexedSeq<Character>, Seria
      * @return The resultant byte array
      */
     public byte[] getBytes() {
-        return back.getBytes();
+        return back.getBytes(Charset.defaultCharset());
     }
 
     /**

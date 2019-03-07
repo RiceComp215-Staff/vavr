@@ -21,6 +21,8 @@ package io.vavr;
 
 import static io.vavr.CheckedRunnableModule.sneakyThrow;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
+
 /**
  * A {@linkplain Runnable} which may throw.
  */
@@ -76,7 +78,8 @@ public interface CheckedRunnable {
 interface CheckedRunnableModule {
 
     // DEV-NOTE: we do not plan to expose this as public API
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
+    @CanIgnoreReturnValue
     static <T extends Throwable, R> R sneakyThrow(Throwable t) throws T {
         throw (T) t;
     }

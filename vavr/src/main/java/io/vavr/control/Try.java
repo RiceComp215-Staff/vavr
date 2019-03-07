@@ -19,6 +19,7 @@
  */
 package io.vavr.control;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.Seq;
 import io.vavr.collection.Iterator;
@@ -1700,7 +1701,8 @@ interface TryModule {
     }
 
     // DEV-NOTE: we do not plan to expose this as public API
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
+    @CanIgnoreReturnValue
     static <T extends Throwable, R> R sneakyThrow(Throwable t) throws T {
         throw (T) t;
     }

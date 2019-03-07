@@ -60,6 +60,8 @@ We use these goals frequently to keep the dependencies and plugins up-to-date:
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <errorprone.version>2.3.3</errorprone.version>
+        <jsr305.version>3.0.2</jsr305.version>
         <assertj.core.version>3.11.1</assertj.core.version>
         <eclipse.lifecycle.mapping.version>1.0.0</eclipse.lifecycle.mapping.version>
         <java.version>1.8</java.version>
@@ -101,6 +103,18 @@ We use these goals frequently to keep the dependencies and plugins up-to-date:
                 <groupId>org.openjdk.jmh</groupId>
                 <artifactId>jmh-generator-annprocess</artifactId>
                 <version>${jmh.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations -->
+            <dependency>
+                <groupId>com.google.errorprone</groupId>
+                <artifactId>error_prone_annotations</artifactId>
+                <version>${errorprone.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 -->
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${jsr305.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -261,7 +275,18 @@ We use these goals frequently to keep the dependencies and plugins up-to-date:
                             <arg>-Xlint:-processing</arg>
                             <!-- Enable Java 9 compilation with 1.8 compatibility -->
                             <arg>-Xlint:-options</arg>
+                            <!-- ErrorProne flags -->
+                            <!-- simple: totally fails on VAVR tests, byfile: works better but not perfect -->
+                            <arg>-XDcompilePolicy=byfile</arg>
+                            <arg>-Xplugin:ErrorProne</arg>
                         </compilerArgs>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>com.google.errorprone</groupId>
+                                <artifactId>error_prone_core</artifactId>
+                                <version>${errorprone.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
                     </configuration>
                 </plugin>
                 <plugin>

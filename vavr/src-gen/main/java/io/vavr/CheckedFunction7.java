@@ -188,6 +188,7 @@ public interface CheckedFunction7<T1, T2, T3, T4, T5, T6, T7, R> extends Seriali
      * @return the result of function application
      * @throws Throwable if something goes wrong applying this function to the given arguments
      */
+    @SuppressWarnings("MissingOverride")
     R apply(T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7) throws Throwable;
 
     /**
@@ -383,6 +384,7 @@ public interface CheckedFunction7<T1, T2, T3, T4, T5, T6, T7, R> extends Seriali
      * @return a function composed of this and after
      * @throws NullPointerException if after is null
      */
+    @SuppressWarnings("MissingOverride")
     default <V> CheckedFunction7<T1, T2, T3, T4, T5, T6, T7, V> andThen(CheckedFunction1<? super R, ? extends V> after) {
         Objects.requireNonNull(after, "after is null");
         return (t1, t2, t3, t4, t5, t6, t7) -> after.apply(apply(t1, t2, t3, t4, t5, t6, t7));
@@ -393,7 +395,8 @@ public interface CheckedFunction7<T1, T2, T3, T4, T5, T6, T7, R> extends Seriali
 interface CheckedFunction7Module {
 
     // DEV-NOTE: we do not plan to expose this as public API
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
+    @com.google.errorprone.annotations.CanIgnoreReturnValue
     static <T extends Throwable, R> R sneakyThrow(Throwable t) throws T {
         throw (T) t;
     }

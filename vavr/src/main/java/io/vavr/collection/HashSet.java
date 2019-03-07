@@ -1000,6 +1000,7 @@ public final class HashSet<T> implements Set<T>, Serializable {
      * @throws java.io.InvalidObjectException This method will throw with the message "Proxy required".
      */
     @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+    @SuppressWarnings("UnusedVariable")
     private void readObject(ObjectInputStream stream) throws InvalidObjectException {
         throw new InvalidObjectException("Proxy required");
     }

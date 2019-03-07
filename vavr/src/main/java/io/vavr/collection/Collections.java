@@ -246,8 +246,8 @@ final class Collections {
 
     // @param iterable may not be null
     static boolean isEmpty(Iterable<?> iterable) {
-        return iterable instanceof Traversable && ((Traversable<?>) iterable).isEmpty()
-                || iterable instanceof Collection && ((Collection<?>) iterable).isEmpty()
+        return (iterable instanceof Traversable && ((Traversable<?>) iterable).isEmpty())
+                || (iterable instanceof Collection && ((Collection<?>) iterable).isEmpty())
                 || !iterable.iterator().hasNext();
     }
 

@@ -60,6 +60,7 @@ import static io.vavr.collection.IteratorModule.EmptyIterator;
  * @author Daniel Dietrich
  */
 // DEV-NOTE: we prefer returning empty() over this if !hasNext() == true in order to free memory.
+@SuppressWarnings("IterableAndIterator")
 public interface Iterator<T> extends java.util.Iterator<T>, Traversable<T> {
 
     /**

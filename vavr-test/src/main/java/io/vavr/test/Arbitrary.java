@@ -24,6 +24,7 @@ import io.vavr.collection.Stream;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.Objects;
@@ -231,7 +232,7 @@ public interface Arbitrary<T> {
      * @see #localDateTime(LocalDateTime, ChronoUnit)
      */
     static Arbitrary<LocalDateTime> localDateTime(ChronoUnit unit) {
-        return localDateTime(LocalDateTime.now(), unit);
+        return localDateTime(LocalDateTime.now(ZoneId.systemDefault()), unit);
     }
 
     /**

@@ -91,7 +91,7 @@ public interface Multimap<K, V> extends Traversable<Tuple2<K, V>>, PartialFuncti
 
     long serialVersionUID = 1L;
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "ImmutableEnumChecker"})
     enum ContainerType {
         SET(
                 (Traversable<?> set, Object elem) -> ((Set<Object>) set).add(elem),

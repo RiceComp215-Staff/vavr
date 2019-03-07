@@ -323,6 +323,7 @@ public interface Future<T> extends Value<T> {
      * @throws NullPointerException if executor or future is null
      */
     @GwtIncompatible
+    @SuppressWarnings("FutureReturnValueIgnored")
     static <T> Future<T> fromCompletableFuture(Executor executor, CompletableFuture<T> future) {
         Objects.requireNonNull(executor, "executor is null");
         Objects.requireNonNull(future, "future is null");
