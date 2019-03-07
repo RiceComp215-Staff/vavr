@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.control.Option;
 
@@ -91,7 +92,7 @@ public interface Multimap<K, V> extends Traversable<Tuple2<K, V>>, PartialFuncti
 
     long serialVersionUID = 1L;
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "ImmutableEnumChecker"})
     enum ContainerType {
         SET(
                 (Traversable<?> set, Object elem) -> ((Set<Object>) set).add(elem),
@@ -691,6 +692,7 @@ public interface Multimap<K, V> extends Traversable<Tuple2<K, V>>, PartialFuncti
     Tuple2<? extends Multimap<K, V>, ? extends Multimap<K, V>> partition(Predicate<? super Tuple2<K, V>> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     Multimap<K, V> peek(Consumer<? super Tuple2<K, V>> action);
 
     @Override

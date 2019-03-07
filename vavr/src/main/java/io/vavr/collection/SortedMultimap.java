@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.control.Option;
 import io.vavr.Tuple2;
 
@@ -158,6 +159,7 @@ public interface SortedMultimap<K, V> extends Multimap<K, V>, Ordered<K> {
     Tuple2<? extends SortedMultimap<K, V>, ? extends SortedMultimap<K, V>> partition(Predicate<? super Tuple2<K, V>> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     SortedMultimap<K, V> peek(Consumer<? super Tuple2<K, V>> action);
 
     @Override

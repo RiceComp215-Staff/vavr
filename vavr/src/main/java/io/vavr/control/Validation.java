@@ -19,6 +19,7 @@
  */
 package io.vavr.control;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.Seq;
 import io.vavr.collection.Iterator;
@@ -202,6 +203,7 @@ public interface Validation<E, T> extends Value<T>, Serializable {
      * @return an instance of Builder&lt;E,T1,T2&gt;
      * @throws NullPointerException if validation1 or validation2 is null
      */
+    @SuppressWarnings("AmbiguousMethodReference")
     static <E, T1, T2> Builder<E, T1, T2> combine(Validation<E, T1> validation1, Validation<E, T2> validation2) {
         Objects.requireNonNull(validation1, "validation1 is null");
         Objects.requireNonNull(validation2, "validation2 is null");
@@ -606,6 +608,7 @@ public interface Validation<E, T> extends Value<T>, Serializable {
      * @param validation the validation object to combine this with
      * @return an instance of Builder
      */
+    @SuppressWarnings("AmbiguousMethodReference")
     default <U> Builder<E, T, U> combine(Validation<E, U> validation) {
         return new Builder<>(this, validation);
     }
@@ -624,6 +627,7 @@ public interface Validation<E, T> extends Value<T>, Serializable {
     }
 
     @Override
+    @CanIgnoreReturnValue
     default Validation<E, T> peek(Consumer<? super T> action) {
         if (isValid()) {
             action.accept(get());

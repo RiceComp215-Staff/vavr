@@ -25,10 +25,10 @@ import io.vavr.collection.HashArrayMappedTrieModule.EmptyNode;
 import io.vavr.control.Option;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 import static java.lang.Integer.bitCount;
-import static java.util.Arrays.copyOf;
 import static io.vavr.collection.HashArrayMappedTrieModule.Action.PUT;
 import static io.vavr.collection.HashArrayMappedTrieModule.Action.REMOVE;
 
@@ -185,7 +185,7 @@ interface HashArrayMappedTrieModule {
         }
 
         static Object[] update(Object[] arr, int index, Object newElement) {
-            final Object[] newArr = copyOf(arr, arr.length);
+            final Object[] newArr = Arrays.copyOf(arr, arr.length);
             newArr[index] = newElement;
             return newArr;
         }

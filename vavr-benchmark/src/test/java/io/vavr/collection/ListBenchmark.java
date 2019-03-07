@@ -35,6 +35,7 @@ import static io.vavr.collection.Collections.areEqual;
 import static scala.collection.JavaConverters.asJavaCollection;
 import static scala.collection.JavaConverters.asScalaBuffer;
 
+@SuppressWarnings("JdkObsolete")
 public class ListBenchmark {
     static final Array<Class<?>> CLASSES = Array.of(
             Create.class,

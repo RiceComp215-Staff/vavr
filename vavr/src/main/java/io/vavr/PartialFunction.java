@@ -106,6 +106,7 @@ public interface PartialFunction<T, R> extends Function1<T, R> {
      * @return the result of function application
      *
      */
+    @Override
     R apply(T t);
 
     /**

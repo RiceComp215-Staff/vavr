@@ -19,6 +19,7 @@
  */
 package io.vavr.control;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple;
 import io.vavr.Value;
@@ -26,6 +27,7 @@ import io.vavr.collection.Iterator;
 import io.vavr.collection.Seq;
 import io.vavr.collection.Vector;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -60,7 +62,7 @@ public interface Option<T> extends Value<T>, Serializable {
      * @param <T>   type of the value
      * @return {@code Some(value)} if value is not {@code null}, {@code None} otherwise
      */
-    static <T> Option<T> of(T value) {
+    static <T> Option<T> of(@Nullable T value) {
         return (value == null) ? none() : some(value);
     }
 
@@ -411,6 +413,7 @@ public interface Option<T> extends Value<T>, Serializable {
      * @return this {@code Option}
      */
     @Override
+    @CanIgnoreReturnValue
     default Option<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (isDefined()) {

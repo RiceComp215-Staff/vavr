@@ -33,6 +33,7 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SuppressWarnings("JavaTimeDefaultTimeZone")
 public class ArbitraryTest {
 
     // equally distributed random number generator

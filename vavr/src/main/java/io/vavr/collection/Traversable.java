@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple2;
 import io.vavr.Tuple3;
@@ -397,6 +398,7 @@ public interface Traversable<T> extends Foldable<T>, Value<T> {
      * @param obj an object, may be null
      * @return true, if this collection equals the given object according to the rules described above, false otherwise.
      */
+    @Override
     boolean equals(Object obj);
 
     /**
@@ -672,6 +674,7 @@ public interface Traversable<T> extends Foldable<T>, Value<T> {
      *
      * @return The hash code of this collection
      */
+    @Override
     int hashCode();
 
     /**
@@ -1080,6 +1083,7 @@ public interface Traversable<T> extends Foldable<T>, Value<T> {
     Tuple2<? extends Traversable<T>, ? extends Traversable<T>> partition(Predicate<? super T> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     Traversable<T> peek(Consumer<? super T> action);
 
     /**

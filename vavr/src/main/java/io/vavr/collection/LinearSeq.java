@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple;
 import io.vavr.control.Option;
@@ -176,7 +177,6 @@ public interface LinearSeq<T> extends Seq<T> {
     @Override
     LinearSeq<T> intersperse(T element);
 
-    @Deprecated
     @Override
     default boolean isDefinedAt(Integer index) {
         // we can't use length() because of infinite long sequences
@@ -224,6 +224,7 @@ public interface LinearSeq<T> extends Seq<T> {
     Tuple2<? extends LinearSeq<T>, ? extends LinearSeq<T>> partition(Predicate<? super T> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     LinearSeq<T> peek(Consumer<? super T> action);
 
     @Override

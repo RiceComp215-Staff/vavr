@@ -19,6 +19,7 @@
  */
 package io.vavr.control;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.Seq;
 import io.vavr.collection.Iterator;
@@ -112,6 +113,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @return {@code Success(null)} if no exception occurs, otherwise {@code Failure(throwable)} if an exception occurs
      * calling {@code runnable.run()}.
      */
+    @CanIgnoreReturnValue
     static Try<Void> run(CheckedRunnable runnable) {
         Objects.requireNonNull(runnable, "runnable is null");
         try {
@@ -129,6 +131,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @return {@code Success(null)} if no exception occurs, otherwise {@code Failure(throwable)} if an exception occurs
      * calling {@code runnable.run()}.
      */
+    @CanIgnoreReturnValue
     static Try<Void> runRunnable(Runnable runnable) {
         Objects.requireNonNull(runnable, "runnable is null");
         return run(runnable::run);
@@ -653,6 +656,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @return this
      * @throws NullPointerException if {@code action} is null
      */
+    @CanIgnoreReturnValue
     default Try<T> onFailure(Consumer<? super Throwable> action) {
         Objects.requireNonNull(action, "action is null");
         if (isFailure()) {
@@ -681,6 +685,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @throws NullPointerException if {@code exceptionType} or {@code action} is null
      */
     @GwtIncompatible
+    @CanIgnoreReturnValue
     @SuppressWarnings("unchecked")
     default <X extends Throwable> Try<T> onFailure(Class<X> exceptionType, Consumer<? super X> action) {
         Objects.requireNonNull(exceptionType, "exceptionType is null");
@@ -706,6 +711,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @return this
      * @throws NullPointerException if {@code action} is null
      */
+    @CanIgnoreReturnValue
     default Try<T> onSuccess(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (isSuccess()) {
@@ -775,6 +781,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @throws NullPointerException if {@code action} is null
      */
     @Override
+    @CanIgnoreReturnValue
     default Try<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (isSuccess()) {
@@ -1700,7 +1707,8 @@ interface TryModule {
     }
 
     // DEV-NOTE: we do not plan to expose this as public API
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
+    @CanIgnoreReturnValue
     static <T extends Throwable, R> R sneakyThrow(Throwable t) throws T {
         throw (T) t;
     }

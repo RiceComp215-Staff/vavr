@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
@@ -1123,6 +1124,7 @@ public interface List<T> extends LinearSeq<T> {
      * @return this {@code List}
      */
     @Override
+    @CanIgnoreReturnValue
     default List<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (!isEmpty()) {
@@ -1870,6 +1872,7 @@ public interface List<T> extends LinearSeq<T> {
          * @throws java.io.InvalidObjectException This method will throw with the message "Proxy required".
          */
         @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+        @SuppressWarnings("UnusedVariable")
         private void readObject(ObjectInputStream stream) throws InvalidObjectException {
             throw new InvalidObjectException("Proxy required");
         }

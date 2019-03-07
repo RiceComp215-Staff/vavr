@@ -19,6 +19,7 @@
  */
 package io.vavr;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.collection.*;
 import io.vavr.control.LazyBenchmark;
 import io.vavr.idiom.ForBenchmark;
@@ -107,6 +108,7 @@ public class JmhRunner {
         run(15, 15, 400, ForkJvm.ENABLE, VerboseMode.EXTRA, Assertions.DISABLE, PrintInlining.DISABLE, groups, includes).print();
     }
 
+    @CanIgnoreReturnValue
     private static BenchmarkPerformanceReporter run(int warmupIterations, int measurementIterations, int millis, ForkJvm forkJvm, VerboseMode silent, Assertions assertions, PrintInlining printInlining, Array<Class<?>> groups, Includes[] includes) {
         final Array<String> includeNames = Array.of(includes.length == 0 ? Includes.values() : includes).map(Includes::toString);
         final Array<String> classNames = groups.map(Class::getCanonicalName);

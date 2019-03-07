@@ -19,6 +19,7 @@
  */
 package io.vavr;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.function.Predicate;
 
 import static io.vavr.CheckedPredicateModule.sneakyThrow;
@@ -91,7 +92,8 @@ public interface CheckedPredicate<T> {
 interface CheckedPredicateModule {
 
     // DEV-NOTE: we do not plan to expose this as public API
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
+    @CanIgnoreReturnValue
     static <T extends Throwable, R> R sneakyThrow(Throwable t) throws T {
         throw (T) t;
     }

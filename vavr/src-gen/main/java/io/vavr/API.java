@@ -126,6 +126,7 @@ public final class API {
      * @throws NotImplementedError when this methods is called
      * @see NotImplementedError#NotImplementedError()
      */
+    @SuppressWarnings("TypeParameterUnusedInFormals")
     public static <T> T TODO() {
         throw new NotImplementedError();
     }
@@ -149,6 +150,7 @@ public final class API {
      * @throws NotImplementedError when this methods is called
      * @see NotImplementedError#NotImplementedError(String)
      */
+    @SuppressWarnings("TypeParameterUnusedInFormals")
     public static <T> T TODO(String msg) {
         throw new NotImplementedError(msg);
     }

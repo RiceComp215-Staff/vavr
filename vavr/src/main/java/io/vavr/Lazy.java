@@ -19,6 +19,7 @@
  */
 package io.vavr;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.collection.Iterator;
 import io.vavr.collection.Seq;
 import io.vavr.collection.Vector;
@@ -217,6 +218,7 @@ public final class Lazy<T> implements Value<T>, Supplier<T>, Serializable {
     }
 
     @Override
+    @CanIgnoreReturnValue
     public Lazy<T> peek(Consumer<? super T> action) {
         action.accept(get());
         return this;
@@ -262,6 +264,7 @@ public final class Lazy<T> implements Value<T>, Supplier<T>, Serializable {
      * @throws java.io.IOException If an error occurs writing to the stream.
      */
     @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+    @SuppressWarnings("CheckReturnValue")
     private void writeObject(ObjectOutputStream s) throws IOException {
         get(); // evaluates the lazy value if it isn't evaluated yet!
         s.defaultWriteObject();

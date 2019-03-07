@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple3;
 import io.vavr.Tuple2;
@@ -242,6 +243,7 @@ public interface IndexedSeq<T> extends Seq<T> {
     Tuple2<? extends IndexedSeq<T>, ? extends IndexedSeq<T>> partition(Predicate<? super T> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     IndexedSeq<T> peek(Consumer<? super T> action);
 
     @Override

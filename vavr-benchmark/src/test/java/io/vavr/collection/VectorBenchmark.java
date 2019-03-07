@@ -41,7 +41,7 @@ import static io.vavr.collection.Vector.collector;
 import static scala.collection.JavaConverters.asJavaCollection;
 import static scala.collection.JavaConverters.asScalaBuffer;
 
-@SuppressWarnings({ "ALL", "unchecked", "rawtypes" })
+@SuppressWarnings({ "ALL", "unchecked", "rawtypes", "UnusedVariable" })
 public class VectorBenchmark {
     static final Array<Class<?>> CLASSES = Array.of(
             Create.class,

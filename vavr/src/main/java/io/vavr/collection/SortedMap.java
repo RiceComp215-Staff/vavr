@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.Tuple2;
 import io.vavr.control.Option;
 
@@ -218,6 +219,7 @@ public interface SortedMap<K, V> extends Map<K, V>, Ordered<K> {
     Tuple2<? extends SortedMap<K, V>, ? extends SortedMap<K, V>> partition(Predicate<? super Tuple2<K, V>> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     SortedMap<K, V> peek(Consumer<? super Tuple2<K, V>> action);
 
     @Override

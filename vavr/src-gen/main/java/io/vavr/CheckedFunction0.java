@@ -139,6 +139,7 @@ public interface CheckedFunction0<R> extends Serializable {
      * @return the result of function application
      * @throws Throwable if something goes wrong applying this function to the given arguments
      */
+    @SuppressWarnings("MissingOverride")
     R apply() throws Throwable;
 
     /**
@@ -260,6 +261,7 @@ public interface CheckedFunction0<R> extends Serializable {
      * @return a function composed of this and after
      * @throws NullPointerException if after is null
      */
+    @SuppressWarnings("MissingOverride")
     default <V> CheckedFunction0<V> andThen(CheckedFunction1<? super R, ? extends V> after) {
         Objects.requireNonNull(after, "after is null");
         return () -> after.apply(apply());
@@ -270,7 +272,8 @@ public interface CheckedFunction0<R> extends Serializable {
 interface CheckedFunction0Module {
 
     // DEV-NOTE: we do not plan to expose this as public API
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
+    @com.google.errorprone.annotations.CanIgnoreReturnValue
     static <T extends Throwable, R> R sneakyThrow(Throwable t) throws T {
         throw (T) t;
     }

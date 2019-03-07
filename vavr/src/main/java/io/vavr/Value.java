@@ -19,6 +19,7 @@
  */
 package io.vavr;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.collection.Array;
 import io.vavr.collection.CharSeq;
 import io.vavr.collection.HashMap;
@@ -467,6 +468,7 @@ public interface Value<T> extends Iterable<T> {
      * @param action The action that will be performed on the element(s).
      * @return this instance
      */
+    @CanIgnoreReturnValue
     Value<T> peek(Consumer<? super T> action);
 
     /**
@@ -576,6 +578,7 @@ public interface Value<T> extends Iterable<T> {
      * @return A new {@link CompletableFuture} containing the value
      */
     @GwtIncompatible
+    @SuppressWarnings("CheckReturnValue")
     default CompletableFuture<T> toCompletableFuture() {
         final CompletableFuture<T> completableFuture = new CompletableFuture<>();
         Try.of(this::get)

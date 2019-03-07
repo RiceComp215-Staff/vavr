@@ -640,7 +640,7 @@ public final class PriorityQueue<T> extends io.vavr.collection.AbstractQueue<T, 
 
     @Override
     public boolean equals(Object o) {
-        return o == this || o instanceof PriorityQueue && io.vavr.collection.Collections.areEqual(this, (Iterable) o);
+        return o == this || (o instanceof PriorityQueue && io.vavr.collection.Collections.areEqual(this, (Iterable) o));
     }
 
     @Override

@@ -23,4 +23,6 @@
  * {@linkplain io.vavr.control.Try.Success}, containing a result, or a {@linkplain io.vavr.control.Try.Failure},
  * containing an Exception.
  */
+@javax.annotation.CheckReturnValue
+@javax.annotation.ParametersAreNonnullByDefault
 package io.vavr.control;

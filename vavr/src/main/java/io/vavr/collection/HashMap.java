@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import io.vavr.control.Option;
@@ -748,6 +749,7 @@ public final class HashMap<K, V> implements Map<K, V>, Serializable {
     }
 
     @Override
+    @CanIgnoreReturnValue
     public HashMap<K, V> peek(Consumer<? super Tuple2<K, V>> action) {
         return Maps.peek(this, action);
     }

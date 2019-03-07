@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import io.vavr.control.Option;
@@ -187,6 +188,7 @@ abstract class AbstractQueue<T, Q extends AbstractQueue<T, Q>> implements Traver
 
     @SuppressWarnings("unchecked")
     @Override
+    @CanIgnoreReturnValue
     public Q peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (!isEmpty()) {

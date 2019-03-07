@@ -137,6 +137,7 @@ public interface Function0<R> extends Serializable, Supplier<R> {
      * @return the result of function application
      * 
      */
+    @SuppressWarnings("MissingOverride")
     R apply();
 
     /**
@@ -219,6 +220,7 @@ public interface Function0<R> extends Serializable, Supplier<R> {
      * @return a function composed of this and after
      * @throws NullPointerException if after is null
      */
+    @SuppressWarnings("MissingOverride")
     default <V> Function0<V> andThen(Function<? super R, ? extends V> after) {
         Objects.requireNonNull(after, "after is null");
         return () -> after.apply(apply());

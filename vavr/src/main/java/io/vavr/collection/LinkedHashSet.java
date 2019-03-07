@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.control.Option;
 
@@ -760,6 +761,7 @@ public final class LinkedHashSet<T> implements Set<T>, Serializable {
     }
 
     @Override
+    @CanIgnoreReturnValue
     public LinkedHashSet<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (!isEmpty()) {
@@ -768,6 +770,7 @@ public final class LinkedHashSet<T> implements Set<T>, Serializable {
         return this;
     }
 
+    @SuppressWarnings("ReferenceEquality")
     @Override
     public LinkedHashSet<T> remove(T element) {
         final LinkedHashMap<T, Object> newMap = map.remove(element);
@@ -1030,6 +1033,7 @@ public final class LinkedHashSet<T> implements Set<T>, Serializable {
      * @throws InvalidObjectException This method will throw with the message "Proxy required".
      */
     @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+    @SuppressWarnings("UnusedVariable")
     private void readObject(ObjectInputStream stream) throws InvalidObjectException {
         throw new InvalidObjectException("Proxy required");
     }

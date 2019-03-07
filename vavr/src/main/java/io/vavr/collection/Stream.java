@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.Stream.Cons;
 import io.vavr.collection.Stream.Empty;
@@ -1270,6 +1271,7 @@ public interface Stream<T> extends LinearSeq<T> {
     }
 
     @Override
+    @CanIgnoreReturnValue
     default Stream<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (isEmpty()) {
@@ -1930,6 +1932,7 @@ interface StreamModule {
         }
 
         @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+        @SuppressWarnings("UnusedVariable")
         private void readObject(ObjectInputStream stream) throws InvalidObjectException {
             throw new InvalidObjectException("Proxy required");
         }
@@ -1979,6 +1982,7 @@ interface StreamModule {
         }
 
         @GwtIncompatible("The Java serialization protocol is explicitly not supported")
+        @SuppressWarnings("UnusedVariable")
         private void readObject(ObjectInputStream stream) throws InvalidObjectException {
             throw new InvalidObjectException("Proxy required");
         }

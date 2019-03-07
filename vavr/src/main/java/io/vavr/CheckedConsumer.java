@@ -19,6 +19,7 @@
  */
 package io.vavr;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -95,7 +96,8 @@ public interface CheckedConsumer<T> {
 interface CheckedConsumerModule {
 
     // DEV-NOTE: we do not plan to expose this as public API
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
+    @CanIgnoreReturnValue
     static <T extends Throwable, R> R sneakyThrow(Throwable t) throws T {
         throw (T) t;
     }

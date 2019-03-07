@@ -454,6 +454,7 @@ public class BenchmarkPerformanceReporter {
             return target + ":" + operation + ":" + unit;
         }
 
+        @SuppressWarnings("StringSplitter")
         private String extractPart(String fullyQualifiedName, int indexFromLast) {
             final String[] parts = fullyQualifiedName.split("\\.");
             return parts.length > indexFromLast ? parts[parts.length - indexFromLast - 1] : "";

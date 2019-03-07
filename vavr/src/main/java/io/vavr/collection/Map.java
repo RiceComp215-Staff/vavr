@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.control.Option;
 
@@ -141,7 +142,6 @@ public interface Map<K, V> extends Traversable<Tuple2<K, V>>, PartialFunction<K,
         return Tuple.of(key, value);
     }
 
-    @Deprecated
     @Override
     default V apply(K key) {
         return get(key).getOrElseThrow(() -> new NoSuchElementException(String.valueOf(key)));
@@ -405,6 +405,7 @@ public interface Map<K, V> extends Traversable<Tuple2<K, V>>, PartialFunction<K,
      *
      * @return a function that takes a key k and returns its value in a Some if found, otherwise a None.
      */
+    @Override
     default Function1<K, Option<V>> lift() {
         return this::get;
     }
@@ -800,6 +801,7 @@ public interface Map<K, V> extends Traversable<Tuple2<K, V>>, PartialFunction<K,
     Tuple2<? extends Map<K, V>, ? extends Map<K, V>> partition(Predicate<? super Tuple2<K, V>> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     Map<K, V> peek(Consumer<? super Tuple2<K, V>> action);
 
     @Override

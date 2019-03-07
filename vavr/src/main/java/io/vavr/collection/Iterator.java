@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.IteratorModule.ConcatIterator;
 import io.vavr.collection.IteratorModule.DistinctIterator;
@@ -60,6 +61,7 @@ import static io.vavr.collection.IteratorModule.EmptyIterator;
  * @author Daniel Dietrich
  */
 // DEV-NOTE: we prefer returning empty() over this if !hasNext() == true in order to free memory.
+@SuppressWarnings("IterableAndIterator")
 public interface Iterator<T> extends java.util.Iterator<T>, Traversable<T> {
 
     /**
@@ -1702,6 +1704,7 @@ public interface Iterator<T> extends java.util.Iterator<T>, Traversable<T> {
     }
 
     @Override
+    @CanIgnoreReturnValue
     default Iterator<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (!hasNext()) {

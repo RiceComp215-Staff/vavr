@@ -36,7 +36,7 @@ val CHARSET = java.nio.charset.StandardCharsets.UTF_8
  */
 def run(): Unit = {
   generateMainClasses()
-  generateTestClasses()
+//  generateTestClasses()
 }
 
 /**
@@ -1295,6 +1295,7 @@ def generateMainClasses(): Unit = {
            * @throws NotImplementedError when this methods is called
            * @see NotImplementedError#NotImplementedError()
            */
+          @SuppressWarnings("TypeParameterUnusedInFormals")
           public static <T> T TODO() {
               throw new NotImplementedError();
           }
@@ -1318,6 +1319,7 @@ def generateMainClasses(): Unit = {
            * @throws NotImplementedError when this methods is called
            * @see NotImplementedError#NotImplementedError(String)
            */
+          @SuppressWarnings("TypeParameterUnusedInFormals")
           public static <T> T TODO(String msg) {
               throw new NotImplementedError(msg);
           }
@@ -1643,6 +1645,7 @@ def generateMainClasses(): Unit = {
                * @return the result of function application
                * ${checked.gen("@throws Throwable if something goes wrong applying this function to the given arguments")}
                */
+              @SuppressWarnings("MissingOverride")
               R apply($paramsDecl)${checked.gen(" throws Throwable")};
 
               ${(1 until i).gen(j => {
@@ -1860,6 +1863,7 @@ def generateMainClasses(): Unit = {
                * @return a function composed of this and after
                * @throws NullPointerException if after is null
                */
+              @SuppressWarnings("MissingOverride")
               default <V> $className<${genericsFunction}V> andThen($compositionType<? super R, ? extends V> after) {
                   $Objects.requireNonNull(after, "after is null");
                   return ($params) -> after.apply(apply($params));
@@ -1875,6 +1879,7 @@ def generateMainClasses(): Unit = {
                  * @return a function composed of before and this
                  * @throws NullPointerException if before is null
                  */
+                @SuppressWarnings("MissingOverride")
                 default <V> ${name}1<V, R> compose($compositionType<? super V, ? extends T1> before) {
                     $Objects.requireNonNull(before, "before is null");
                     return v -> apply(before.apply(v));
@@ -1886,7 +1891,8 @@ def generateMainClasses(): Unit = {
             interface ${className}Module {
 
                 // DEV-NOTE: we do not plan to expose this as public API
-                @SuppressWarnings("unchecked")
+                @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
+                @com.google.errorprone.annotations.CanIgnoreReturnValue
                 static <T extends Throwable, R> R sneakyThrow(Throwable t) throws T {
                     throw (T) t;
                 }
@@ -2515,7 +2521,7 @@ def generateMainClasses(): Unit = {
               return array;
           }
 
-          @SuppressWarnings("unchecked")
+          @SuppressWarnings({"unchecked", "TypeParameterUnusedInFormals"})
           static <T> T asPrimitives(Class<?> primitiveClass, Iterable<?> values) {
               final Object[] array = Array.ofAll(values).toJavaArray();
               final ArrayType<T> type = of((Class<T>) primitiveClass);

@@ -19,6 +19,7 @@
  */
 package io.vavr.concurrent;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.Iterator;
 import io.vavr.collection.Seq;
@@ -53,7 +54,7 @@ import java.util.function.*;
  * @param <T> Type of the computation result.
  * @author Daniel Dietrich
  */
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "CheckReturnValue"})
 public interface Future<T> extends Value<T> {
 
     /**
@@ -323,6 +324,7 @@ public interface Future<T> extends Value<T> {
      * @throws NullPointerException if executor or future is null
      */
     @GwtIncompatible
+    @SuppressWarnings("FutureReturnValueIgnored")
     static <T> Future<T> fromCompletableFuture(Executor executor, CompletableFuture<T> future) {
         Objects.requireNonNull(executor, "executor is null");
         Objects.requireNonNull(future, "future is null");
@@ -1310,6 +1312,7 @@ public interface Future<T> extends Value<T> {
     }
 
     @Override
+    @CanIgnoreReturnValue
     default Future<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         onSuccess(action);

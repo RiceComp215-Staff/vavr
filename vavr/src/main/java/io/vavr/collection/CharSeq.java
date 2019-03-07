@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.CharSeqModule.Combinations;
 import io.vavr.control.Option;
@@ -34,6 +35,7 @@ import java.util.stream.Collector;
 
 import static io.vavr.collection.JavaConverters.ChangePolicy.IMMUTABLE;
 import static io.vavr.collection.JavaConverters.ChangePolicy.MUTABLE;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * The CharSeq (read: character sequence) collection essentially is a rich String wrapper having all operations
@@ -745,6 +747,7 @@ public final class CharSeq implements CharSequence, IndexedSeq<Character>, Seria
     }
 
     @Override
+    @CanIgnoreReturnValue
     public CharSeq peek(Consumer<? super Character> action) {
         Objects.requireNonNull(action, "action is null");
         if (!isEmpty()) {
@@ -1538,7 +1541,7 @@ public final class CharSeq implements CharSequence, IndexedSeq<Character>, Seria
      * @return The resultant byte array
      */
     public byte[] getBytes() {
-        return back.getBytes();
+        return back.getBytes(Charset.defaultCharset());
     }
 
     /**

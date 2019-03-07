@@ -653,6 +653,7 @@ public final class Queue<T> extends AbstractQueue<T, Queue<T>> implements Linear
      * @throws NullPointerException if elements is null
      */
     @SuppressWarnings("unchecked")
+    @Override
     public Queue<T> enqueueAll(Iterable<? extends T> elements) {
         Objects.requireNonNull(elements, "elements is null");
         if (isEmpty() && elements instanceof Queue) {

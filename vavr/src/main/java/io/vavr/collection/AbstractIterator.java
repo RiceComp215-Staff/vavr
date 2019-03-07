@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.NoSuchElementException;
 
 /**
@@ -37,9 +38,11 @@ abstract class AbstractIterator<T> implements Iterator<T> {
         return stringPrefix() + "(" + (isEmpty() ? "" : "?") + ")";
     }
 
+    @CanIgnoreReturnValue
     protected abstract T getNext();
 
     @Override
+    @CanIgnoreReturnValue
     public final T next() {
         if (!hasNext()) {
             throw new NoSuchElementException("next() on empty iterator");
