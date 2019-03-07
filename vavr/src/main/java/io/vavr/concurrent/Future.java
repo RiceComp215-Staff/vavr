@@ -19,6 +19,7 @@
  */
 package io.vavr.concurrent;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.Iterator;
 import io.vavr.collection.Seq;
@@ -53,7 +54,7 @@ import java.util.function.*;
  * @param <T> Type of the computation result.
  * @author Daniel Dietrich
  */
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "CheckReturnValue"})
 public interface Future<T> extends Value<T> {
 
     /**

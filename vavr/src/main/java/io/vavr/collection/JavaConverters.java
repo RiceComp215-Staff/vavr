@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.Serializable;
 import java.util.*;
 import java.util.function.Consumer;
@@ -112,6 +113,7 @@ class JavaConverters {
 
         @SuppressWarnings("unchecked")
         @Override
+        @CanIgnoreReturnValue
         public boolean add(T element) {
             setDelegate(() -> (C) getDelegate().append(element));
             return true;
@@ -125,6 +127,7 @@ class JavaConverters {
 
         @SuppressWarnings("unchecked")
         @Override
+        @CanIgnoreReturnValue
         public boolean addAll(Collection<? extends T> collection) {
             Objects.requireNonNull(collection, "collection is null");
             return setDelegateAndCheckChanged(() -> (C) getDelegate().appendAll(collection));
@@ -132,6 +135,7 @@ class JavaConverters {
 
         @SuppressWarnings("unchecked")
         @Override
+        @CanIgnoreReturnValue
         public boolean addAll(int index, Collection<? extends T> collection) {
             Objects.requireNonNull(collection, "collection is null");
             return setDelegateAndCheckChanged(() -> (C) getDelegate().insertAll(index, collection));
@@ -199,12 +203,14 @@ class JavaConverters {
 
         @SuppressWarnings("unchecked")
         @Override
+        @CanIgnoreReturnValue
         public T remove(int index) {
             return setDelegateAndGetPreviousElement(index, () -> (C) getDelegate().removeAt(index));
         }
 
         @SuppressWarnings("unchecked")
         @Override
+        @CanIgnoreReturnValue
         public boolean remove(Object obj) {
             final T that = (T) obj;
             return setDelegateAndCheckChanged(() -> (C) getDelegate().remove(that));
@@ -212,6 +218,7 @@ class JavaConverters {
 
         @SuppressWarnings("unchecked")
         @Override
+        @CanIgnoreReturnValue
         public boolean removeAll(Collection<?> collection) {
             Objects.requireNonNull(collection, "collection is null");
             @SuppressWarnings("unchecked") final Collection<T> that = (Collection<T>) collection;
@@ -220,6 +227,7 @@ class JavaConverters {
 
         @SuppressWarnings("unchecked")
         @Override
+        @CanIgnoreReturnValue
         public boolean retainAll(Collection<?> collection) {
             Objects.requireNonNull(collection, "collection is null");
             @SuppressWarnings("unchecked") final Collection<T> that = (Collection<T>) collection;
@@ -228,6 +236,7 @@ class JavaConverters {
 
         @SuppressWarnings("unchecked")
         @Override
+        @CanIgnoreReturnValue
         public T set(int index, T element) {
             return setDelegateAndGetPreviousElement(index, () -> (C) getDelegate().update(index, element));
         }

@@ -576,6 +576,7 @@ public interface Value<T> extends Iterable<T> {
      * @return A new {@link CompletableFuture} containing the value
      */
     @GwtIncompatible
+    @SuppressWarnings("CheckReturnValue")
     default CompletableFuture<T> toCompletableFuture() {
         final CompletableFuture<T> completableFuture = new CompletableFuture<>();
         Try.of(this::get)

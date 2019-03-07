@@ -58,4 +58,6 @@
  * <li><small>linear</small>&nbsp;&middot;&nbsp;linear time</li>
  * </ul>
  */
+@javax.annotation.CheckReturnValue
+@javax.annotation.ParametersAreNonnullByDefault
 package io.vavr.collection;

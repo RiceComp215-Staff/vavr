@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
@@ -319,6 +320,7 @@ final class BitMappedTrie<T> implements Serializable {
     }
 
     @SuppressWarnings("unchecked")
+    @CanIgnoreReturnValue
     <T2> int visit(LeafVisitor<T2> visitor) {
         int globalIndex = 0, start = lastDigit(offset);
         for (int index = 0; index < length; ) {
