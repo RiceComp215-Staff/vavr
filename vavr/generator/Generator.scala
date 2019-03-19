@@ -36,7 +36,7 @@ val CHARSET = java.nio.charset.StandardCharsets.UTF_8
  */
 def run(): Unit = {
   generateMainClasses()
-  generateTestClasses()
+//  generateTestClasses()
 }
 
 /**
