@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.ArrayModule.Combinations;
 import io.vavr.control.Option;
@@ -1003,6 +1004,7 @@ public final class Array<T> implements IndexedSeq<T>, Serializable {
     }
 
     @Override
+    @CanIgnoreReturnValue
     public Array<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (!isEmpty()) {

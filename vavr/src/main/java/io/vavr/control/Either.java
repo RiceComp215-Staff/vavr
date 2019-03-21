@@ -19,6 +19,7 @@
  */
 package io.vavr.control;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.Value;
 import io.vavr.collection.Iterator;
 import io.vavr.collection.Seq;
@@ -545,6 +546,7 @@ public interface Either<L, R> extends Value<R>, Serializable {
     }
 
     @Override
+    @CanIgnoreReturnValue
     default Either<L, R> peek(Consumer<? super R> action) {
         Objects.requireNonNull(action, "action is null");
         if (isRight()) {
@@ -553,6 +555,7 @@ public interface Either<L, R> extends Value<R>, Serializable {
         return this;
     }
 
+    @CanIgnoreReturnValue
     default Either<L, R> peekLeft(Consumer<? super L> action) {
         Objects.requireNonNull(action, "action is null");
         if (isLeft()) {
@@ -787,6 +790,7 @@ public interface Either<L, R> extends Value<R>, Serializable {
          * @return this LeftProjection
          */
         @Override
+        @CanIgnoreReturnValue
         public LeftProjection<L, R> peek(Consumer<? super L> action) {
             Objects.requireNonNull(action, "action is null");
             if (either.isLeft()) {
@@ -1032,6 +1036,7 @@ public interface Either<L, R> extends Value<R>, Serializable {
          * @return this {@code Either} instance
          */
         @Override
+        @CanIgnoreReturnValue
         public RightProjection<L, R> peek(Consumer<? super R> action) {
             Objects.requireNonNull(action, "action is null");
             if (either.isRight()) {

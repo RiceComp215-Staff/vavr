@@ -1312,6 +1312,7 @@ public interface Future<T> extends Value<T> {
     }
 
     @Override
+    @CanIgnoreReturnValue
     default Future<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         onSuccess(action);

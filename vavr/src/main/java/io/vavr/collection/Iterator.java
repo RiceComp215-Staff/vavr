@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.IteratorModule.ConcatIterator;
 import io.vavr.collection.IteratorModule.DistinctIterator;
@@ -1703,6 +1704,7 @@ public interface Iterator<T> extends java.util.Iterator<T>, Traversable<T> {
     }
 
     @Override
+    @CanIgnoreReturnValue
     default Iterator<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (!hasNext()) {

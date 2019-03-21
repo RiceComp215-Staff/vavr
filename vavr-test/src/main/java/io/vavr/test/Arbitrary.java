@@ -19,6 +19,7 @@
  */
 package io.vavr.test;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.collection.List;
 import io.vavr.collection.Stream;
 
@@ -163,6 +164,7 @@ public interface Arbitrary<T> {
         };
     }
 
+    @CanIgnoreReturnValue
     default Arbitrary<T> peek(Consumer<? super T> action) {
         return size -> apply(size).peek(action);
     }

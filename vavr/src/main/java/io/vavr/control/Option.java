@@ -19,6 +19,7 @@
  */
 package io.vavr.control;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple;
 import io.vavr.Value;
@@ -411,6 +412,7 @@ public interface Option<T> extends Value<T>, Serializable {
      * @return this {@code Option}
      */
     @Override
+    @CanIgnoreReturnValue
     default Option<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (isDefined()) {

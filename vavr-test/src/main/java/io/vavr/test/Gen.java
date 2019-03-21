@@ -19,6 +19,7 @@
  */
 package io.vavr.test;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.Tuple2;
 import io.vavr.collection.Iterator;
 import io.vavr.collection.List;
@@ -404,6 +405,7 @@ public interface Gen<T> {
         return random -> mapper.apply(apply(random));
     }
 
+    @CanIgnoreReturnValue
     default Gen<T> peek(Consumer<? super T> action) {
         return random -> {
             final T t = apply(random);

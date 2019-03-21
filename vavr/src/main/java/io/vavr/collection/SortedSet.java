@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple3;
 import io.vavr.Tuple2;
@@ -162,6 +163,7 @@ public interface SortedSet<T> extends Set<T>, Ordered<T> {
     Tuple2<? extends SortedSet<T>, ? extends SortedSet<T>> partition(Predicate<? super T> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     SortedSet<T> peek(Consumer<? super T> action);
 
     @Override

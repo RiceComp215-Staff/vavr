@@ -52,7 +52,7 @@ public class LazyBenchmark {
         io.vavr.Lazy<Integer>[] INITED_LAZIES;
 
         @Setup
-        @SuppressWarnings({ "unchecked", "rawtypes" })
+        @SuppressWarnings({ "unchecked", "rawtypes", "CheckReturnValue" })
         public void setup() {
             EAGERS = Iterator.range(0, SIZE).toJavaArray(Integer[]::new);
             INITED_LAZIES = Iterator.of(EAGERS).map(i -> {

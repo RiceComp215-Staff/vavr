@@ -19,6 +19,7 @@
  */
 package io.vavr.control;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.Seq;
 import io.vavr.collection.Iterator;
@@ -626,6 +627,7 @@ public interface Validation<E, T> extends Value<T>, Serializable {
     }
 
     @Override
+    @CanIgnoreReturnValue
     default Validation<E, T> peek(Consumer<? super T> action) {
         if (isValid()) {
             action.accept(get());

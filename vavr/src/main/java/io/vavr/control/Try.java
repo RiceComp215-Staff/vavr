@@ -113,6 +113,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @return {@code Success(null)} if no exception occurs, otherwise {@code Failure(throwable)} if an exception occurs
      * calling {@code runnable.run()}.
      */
+    @CanIgnoreReturnValue
     static Try<Void> run(CheckedRunnable runnable) {
         Objects.requireNonNull(runnable, "runnable is null");
         try {
@@ -130,6 +131,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @return {@code Success(null)} if no exception occurs, otherwise {@code Failure(throwable)} if an exception occurs
      * calling {@code runnable.run()}.
      */
+    @CanIgnoreReturnValue
     static Try<Void> runRunnable(Runnable runnable) {
         Objects.requireNonNull(runnable, "runnable is null");
         return run(runnable::run);
@@ -776,6 +778,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @throws NullPointerException if {@code action} is null
      */
     @Override
+    @CanIgnoreReturnValue
     default Try<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (isSuccess()) {

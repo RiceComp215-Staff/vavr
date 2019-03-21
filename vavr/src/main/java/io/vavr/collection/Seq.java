@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.control.Option;
 
@@ -1204,6 +1205,7 @@ public interface Seq<T> extends Traversable<T>, PartialFunction<Integer, T>, Ser
     Tuple2<? extends Seq<T>, ? extends Seq<T>> partition(Predicate<? super T> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     Seq<T> peek(Consumer<? super T> action);
 
     @Override

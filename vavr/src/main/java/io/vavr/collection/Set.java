@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.Function1;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple3;
@@ -260,6 +261,7 @@ public interface Set<T> extends Traversable<T>, Function1<T, Boolean>, Serializa
     Tuple2<? extends Set<T>, ? extends Set<T>> partition(Predicate<? super T> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     Set<T> peek(Consumer<? super T> action);
 
     @Override

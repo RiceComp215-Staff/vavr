@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.Function1;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple3;
@@ -466,6 +467,7 @@ public interface BitSet<T> extends SortedSet<T> {
     Tuple2<BitSet<T>, BitSet<T>> partition(Predicate<? super T> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     default BitSet<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (!isEmpty()) {

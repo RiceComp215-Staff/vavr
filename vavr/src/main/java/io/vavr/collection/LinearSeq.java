@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple;
 import io.vavr.control.Option;
@@ -224,6 +225,7 @@ public interface LinearSeq<T> extends Seq<T> {
     Tuple2<? extends LinearSeq<T>, ? extends LinearSeq<T>> partition(Predicate<? super T> predicate);
 
     @Override
+    @CanIgnoreReturnValue
     LinearSeq<T> peek(Consumer<? super T> action);
 
     @Override

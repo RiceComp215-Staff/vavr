@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.PartialFunction;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
@@ -653,6 +654,7 @@ public interface Tree<T> extends Traversable<T>, Serializable {
     }
 
     @Override
+    @CanIgnoreReturnValue
     default Tree<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (!isEmpty()) {

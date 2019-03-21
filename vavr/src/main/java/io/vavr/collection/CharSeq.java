@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.collection.CharSeqModule.Combinations;
 import io.vavr.control.Option;
@@ -746,6 +747,7 @@ public final class CharSeq implements CharSequence, IndexedSeq<Character>, Seria
     }
 
     @Override
+    @CanIgnoreReturnValue
     public CharSeq peek(Consumer<? super Character> action) {
         Objects.requireNonNull(action, "action is null");
         if (!isEmpty()) {

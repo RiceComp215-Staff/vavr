@@ -19,6 +19,7 @@
  */
 package io.vavr.collection;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.vavr.*;
 import io.vavr.control.Option;
 
@@ -807,6 +808,7 @@ public final class TreeSet<T> implements SortedSet<T>, Serializable {
     }
 
     @Override
+    @CanIgnoreReturnValue
     public TreeSet<T> peek(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (!isEmpty()) {
