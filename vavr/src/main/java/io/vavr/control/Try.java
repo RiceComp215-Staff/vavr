@@ -656,6 +656,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @return this
      * @throws NullPointerException if {@code action} is null
      */
+    @CanIgnoreReturnValue
     default Try<T> onFailure(Consumer<? super Throwable> action) {
         Objects.requireNonNull(action, "action is null");
         if (isFailure()) {
@@ -684,6 +685,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @throws NullPointerException if {@code exceptionType} or {@code action} is null
      */
     @GwtIncompatible
+    @CanIgnoreReturnValue
     @SuppressWarnings("unchecked")
     default <X extends Throwable> Try<T> onFailure(Class<X> exceptionType, Consumer<? super X> action) {
         Objects.requireNonNull(exceptionType, "exceptionType is null");
@@ -709,6 +711,7 @@ public interface Try<T> extends Value<T>, Serializable {
      * @return this
      * @throws NullPointerException if {@code action} is null
      */
+    @CanIgnoreReturnValue
     default Try<T> onSuccess(Consumer<? super T> action) {
         Objects.requireNonNull(action, "action is null");
         if (isSuccess()) {
